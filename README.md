@@ -2,6 +2,16 @@
 
 This is my Week 5 backend assignment. It collects book information from the first three catalogue pages of Books to Scrape, checks the data, and saves the valid records as JSON.
 
+## Quick result
+
+- 3 catalogue pages processed
+- 60 unique book URLs discovered
+- 60 validated records saved
+- 1 deliberate broken URL skipped without stopping the run
+- 32 automated tests passing
+
+![Verified scraper run](evidence/verified-run.png)
+
 ## Target classification
 
 - **Site:** [Books to Scrape](https://books.toscrape.com/)
