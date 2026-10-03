@@ -1,0 +1,16 @@
+{
+  "start_time": "2026-10-03T18:25:43.571002Z",
+  "duration_seconds": 1.56,
+  "catalogue_pages": 3,
+  "discovered": 60,
+  "unique_urls": 60,
+  "detail_pages": 60,
+  "pages_fetched": 0,
+  "cache_hits": 63,
+  "valid_records": 60,
+  "invalid_records": 0,
+  "failed_pages": 1,
+  "failed_page_urls": [
+    "https://books.toscrape.com/catalogue/this-page-does-not-exist/index.html"
+  ]
+}
