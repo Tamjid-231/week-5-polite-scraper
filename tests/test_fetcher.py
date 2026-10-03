@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Any
 
 import pytest
 import requests
@@ -18,12 +19,11 @@ class FakeSession:
         self.outcomes = list(outcomes)
         self.calls: list[dict[str, object]] = []
 
-    def get(self, url: str, **kwargs: object) -> FakeResponse:
+    def get(self, url: str, **kwargs: object) -> Any:
         self.calls.append({"url": url, **kwargs})
         outcome = self.outcomes.pop(0)
         if isinstance(outcome, Exception):
             raise outcome
-        assert isinstance(outcome, FakeResponse)
         return outcome
 
 
@@ -78,6 +78,20 @@ def test_request_has_identity_and_timeout(tmp_path: Path) -> None:
         "User-Agent": "FlyRankInternship-A9/1.0 (student assignment)"
     }
     assert session.calls[0]["timeout"] == 10.0
+
+
+def test_response_uses_detected_utf8_instead_of_latin1_default(tmp_path: Path) -> None:
+    response = requests.Response()
+    response.status_code = 200
+    response._content = "<p class='price_color'>£51.77</p>".encode("utf-8")
+    response.encoding = "ISO-8859-1"
+    session = FakeSession([response])
+    fetcher = make_fetcher(tmp_path, session)
+
+    html = fetcher.fetch("https://example.test/book", "book.html")
+
+    assert "£51.77" in html
+    assert "Â£" not in html
 
 
 def test_two_real_requests_are_spaced_by_half_a_second(tmp_path: Path) -> None:

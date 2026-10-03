@@ -71,6 +71,9 @@ class PoliteFetcher:
 
             status = response.status_code
             if status == 200:
+                detected_encoding = getattr(response, "apparent_encoding", None)
+                if detected_encoding:
+                    response.encoding = detected_encoding
                 if not response.text:
                     raise FetchError(f"Empty response from {url}")
                 cache_path.parent.mkdir(parents=True, exist_ok=True)
