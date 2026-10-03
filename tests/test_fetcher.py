@@ -68,6 +68,17 @@ def test_empty_cache_file_is_refetched(tmp_path: Path) -> None:
     assert len(session.calls) == 1
 
 
+def test_unreadable_cache_file_is_refetched(tmp_path: Path) -> None:
+    cache_file = tmp_path / "catalogue" / "page-1.html"
+    cache_file.parent.mkdir(parents=True)
+    cache_file.write_bytes(b"\xff\xfe\x00broken")
+    session = FakeSession([FakeResponse(200, "<html>fresh</html>")])
+    fetcher = make_fetcher(tmp_path, session)
+
+    assert fetcher.fetch("https://example.test/page", "catalogue/page-1.html") == "<html>fresh</html>"
+    assert len(session.calls) == 1
+
+
 def test_request_has_identity_and_timeout(tmp_path: Path) -> None:
     session = FakeSession([FakeResponse(200)])
     fetcher = make_fetcher(tmp_path, session)

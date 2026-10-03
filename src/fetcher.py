@@ -45,10 +45,14 @@ class PoliteFetcher:
     def fetch(self, url: str, cache_key: str) -> str:
         cache_path = self._cache_path(cache_key)
         if cache_path.is_file() and cache_path.stat().st_size > 0:
-            html = cache_path.read_text(encoding="utf-8")
-            print(f"CACHE HIT {url} bytes={len(html.encode('utf-8'))}")
-            self.stats.cache_hits += 1
-            return html
+            try:
+                html = cache_path.read_text(encoding="utf-8")
+            except UnicodeDecodeError:
+                print(f"CACHE INVALID {url} reason=not UTF-8")
+            else:
+                print(f"CACHE HIT {url} bytes={len(html.encode('utf-8'))}")
+                self.stats.cache_hits += 1
+                return html
 
         last_error = "unknown error"
         for attempt in range(2):
