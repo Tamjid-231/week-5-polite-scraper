@@ -24,6 +24,7 @@ The small scope and practice-sandbox purpose make this an appropriate target for
 
 ## Requirements
 
+- **Lane:** Python
 - Python 3.10 or newer
 - Internet access for the first run
 
@@ -66,7 +67,7 @@ Pydantic checks every record before it reaches `books.json`. Invalid records go 
 
 ## Politeness rules I used
 
-- An honest `FlyRankInternship-A9/1.0 (student assignment)` user-agent on every real request.
+- An honest `FlyRankInternship-A9/1.0 (+https://github.com/Tamjid-231/week-5-polite-scraper)` user-agent on every real request.
 - A 10-second timeout so a request cannot hang forever.
 - HTTP status checking before any HTML is parsed.
 - At least 500 ms between real requests.

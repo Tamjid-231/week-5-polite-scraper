@@ -28,7 +28,10 @@ START_URL = "https://books.toscrape.com/catalogue/page-1.html"
 BROKEN_URL = (
     "https://books.toscrape.com/catalogue/this-page-does-not-exist/index.html"
 )
-USER_AGENT = "FlyRankInternship-A9/1.0 (student assignment)"
+USER_AGENT = (
+    "FlyRankInternship-A9/1.0 "
+    "(+https://github.com/Tamjid-231/week-5-polite-scraper)"
+)
 
 
 class Fetcher(Protocol):
