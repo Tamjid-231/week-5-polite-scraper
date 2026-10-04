@@ -2,6 +2,10 @@
 
 This is my Week 5 backend assignment. It collects book information from the first three catalogue pages of Books to Scrape, checks the data, and saves the valid records as JSON.
 
+## Author
+
+Md. Tamjid Hossain
+
 ## Quick result
 
 - 3 catalogue pages processed
