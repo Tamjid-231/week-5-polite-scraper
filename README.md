@@ -1,10 +1,8 @@
 # The Polite Scraper
 
+### FlyRank Internship - Backend Track - Week 5 Assignment
+
 This is my Week 5 backend assignment. It collects book information from the first three catalogue pages of Books to Scrape, checks the data, and saves the valid records as JSON.
-
-## Author
-
-Md. Tamjid Hossain
 
 ## Quick result
 
@@ -125,4 +123,12 @@ Install the development requirements and run:
 python -m pip install -r requirements-dev.txt
 python -m pytest -v
 ```
+
+---
+
+## Author
+
+**Md. Tamjid Hossain**
+
+FlyRank Internship - Backend Track - Week 5
 
